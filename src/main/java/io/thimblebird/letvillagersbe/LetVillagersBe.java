@@ -76,6 +76,7 @@ public class LetVillagersBe implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		AttackBlockCallback.EVENT.register(new AttackBlockHandler());
 		UseBlockCallback.EVENT.register(new UseBlockHandler());
 	}
 }
