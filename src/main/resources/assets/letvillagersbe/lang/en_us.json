@@ -1,0 +1,12 @@
+{
+  "letvillagersbe.break_bed": "You can't break this bed while %1$s is sleeping",
+  "letvillagersbe.entity.wants_to_sleep": "%1$s wants to sleep",
+  "letvillagersbe.entity.needs_their_sleep": "%1$s needs their sleep",
+  "letvillagersbe.entity.let_sleep": "Let %1$s sleep",
+  "letvillagersbe.entity.wont_get_up": "%1$s won't get up",
+  "letvillagersbe.entity.ignores_you": "%1$s ignores you",
+  "letvillagersbe.entity.had_a_long_day": "%1$s had a long day",
+  "letvillagersbe.entity.is_dreaming_about_sleeping": "%1$s is dreaming about sleeping",
+  "letvillagersbe.entity.is_dreaming_about_you_letting_them_sleep": "%1$s is dreaming about you letting them sleep",
+  "letvillagersbe.entity.is_having_a_nap": "%1$s is having a nap"
+}
