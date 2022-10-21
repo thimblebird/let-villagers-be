@@ -65,6 +65,8 @@ public class UseBlockHandler implements UseBlockCallback {
     private void respond(VillagerEntity villager, PlayerEntity player) {
         this.random = Random.create();
 
+        // @TODO: doing this until i figure out how to add a proper cooldown
+        // random chance to respond
         if (this.random.nextDouble() <= 0.33D) {
             this.sendResponse(villager, player);
         }
