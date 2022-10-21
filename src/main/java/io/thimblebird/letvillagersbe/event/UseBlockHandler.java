@@ -1,10 +1,6 @@
 package io.thimblebird.letvillagersbe.event;
 
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
-import net.minecraft.block.BedBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.enums.BedPart;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.MutableText;
@@ -14,14 +10,10 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Util;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
-import java.util.List;
-
-import static io.thimblebird.letvillagersbe.LetVillagersBe.STATUS_NONE;
-import static io.thimblebird.letvillagersbe.LetVillagersBe.WAKE_REACTIONS;
+import static io.thimblebird.letvillagersbe.LetVillagersBe.*;
 
 public class UseBlockHandler implements UseBlockCallback {
     protected Random random;
@@ -82,18 +74,12 @@ public class UseBlockHandler implements UseBlockCallback {
 
         if (isSurvival && !world.isClient()) {
             BlockPos hitBlockPos = hitResult.getBlockPos();
-            BlockState hitBlockState = world.getBlockState(hitBlockPos);
 
-            if (hitBlockState.getBlock() instanceof BedBlock) {
-                if (hitBlockState.get(BedBlock.PART) != BedPart.HEAD) {
-                    hitBlockPos = hitBlockPos.offset(hitBlockState.get(BedBlock.FACING));
-                }
+            if (isBedBlock(world, hitBlockPos)) {
+                hitBlockPos = getBedBlockPos(world, hitBlockPos);
 
-                // borrowed from VillagerEntity.class
-                List<net.minecraft.entity.passive.VillagerEntity> villagerEntityList = world.getEntitiesByClass(net.minecraft.entity.passive.VillagerEntity.class, new Box(hitBlockPos), LivingEntity::isSleeping);
-
-                if (!villagerEntityList.isEmpty()) {
-                    VillagerEntity villager = villagerEntityList.get(0);
+                if (isBedOccupiedByVillager(world, hitBlockPos)) {
+                    VillagerEntity villager = getVillagerOccupyingBed(world, hitBlockPos);
 
                     respond(villager, player);
 
