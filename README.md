@@ -1,4 +1,4 @@
-# Let Villagers Be [Fabric]
+# ![mod icon representing a pixelated 8x8 villager head](src/main/resources/assets/letvillagersbe/icon.png) Let Villagers Be [Fabric]
 
 ## Features
 - players can't right-click villagers out of their beds
