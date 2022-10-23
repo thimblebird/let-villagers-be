@@ -4,13 +4,15 @@
   "version": "${version}",
 
   "name": "Let Villagers Be",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "Stop forcing Villagers out of their dreams and beds at night.",
+  "icon": "assets/letvillagersbe/icon.png",
   "authors": [
     "thimblebird"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://thimblebird.github.io",
+    "sources": "https://github.com/thimblebird/let-villagers-be",
+    "issues": "https://github.com/thimblebird/let-villagers-be/issues"
   },
 
   "license": "MIT License",
@@ -34,8 +36,5 @@
     "fabric-api": "*",
     "minecraft": "~1.19",
     "java": ">=17"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }
