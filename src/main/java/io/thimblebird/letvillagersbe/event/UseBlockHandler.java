@@ -66,7 +66,7 @@ public class UseBlockHandler implements UseBlockCallback {
 
     @Override
     public ActionResult interact(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
-        if (isSurvivalPlayer(player)) return ActionResult.PASS;
+        if (!isSurvivalPlayer(player)) return ActionResult.PASS;
 
         if (!world.isClient()) {
             BlockPos hitBlockPos = hitResult.getBlockPos();

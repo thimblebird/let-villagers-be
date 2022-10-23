@@ -15,7 +15,7 @@ import static io.thimblebird.letvillagersbe.LetVillagersBe.*;
 public class AttackBlockHandler implements AttackBlockCallback {
     @Override
     public ActionResult interact(PlayerEntity player, World world, Hand hand, BlockPos pos, Direction direction) {
-        if (isSurvivalPlayer(player)) return ActionResult.PASS;
+        if (!isSurvivalPlayer(player)) return ActionResult.PASS;
 
         if (!world.isClient()) {
             if (isBedBlock(world, pos)) {

@@ -15,7 +15,7 @@ import static io.thimblebird.letvillagersbe.LetVillagersBe.isSurvivalPlayer;
 public class AttackEntityHandler implements AttackEntityCallback {
     @Override
     public ActionResult interact(PlayerEntity player, World world, Hand hand, Entity entity, @Nullable EntityHitResult hitResult) {
-        if (isSurvivalPlayer(player)) return ActionResult.PASS;
+        if (!isSurvivalPlayer(player)) return ActionResult.PASS;
 
         if (!world.isClient()) {
             if (entity instanceof VillagerEntity && ((VillagerEntity) entity).isSleeping()) {
