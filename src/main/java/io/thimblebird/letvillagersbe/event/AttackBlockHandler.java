@@ -15,13 +15,9 @@ import static io.thimblebird.letvillagersbe.LetVillagersBe.*;
 public class AttackBlockHandler implements AttackBlockCallback {
     @Override
     public ActionResult interact(PlayerEntity player, World world, Hand hand, BlockPos pos, Direction direction) {
-        // spectators can't break no blocks
-        if (player.isSpectator()) return ActionResult.PASS;
+        if (isSurvivalPlayer(player)) return ActionResult.PASS;
 
-        // only check when alive and in survival mode
-        boolean isSurvival = !player.isCreative() && player.isAlive();
-
-        if (isSurvival && !world.isClient()) {
+        if (!world.isClient()) {
             if (isBedBlock(world, pos)) {
                 pos = getBedBlockPos(world, pos);
 
@@ -32,7 +28,7 @@ public class AttackBlockHandler implements AttackBlockCallback {
                         player.sendMessage(Text.translatable(MESSAGE_BREAK_BED, villager.getName()), true);
                     }
 
-                    return ActionResult.CONSUME;
+                    return ActionResult.FAIL;
                 }
             }
         }

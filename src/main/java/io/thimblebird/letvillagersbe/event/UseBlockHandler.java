@@ -66,13 +66,9 @@ public class UseBlockHandler implements UseBlockCallback {
 
     @Override
     public ActionResult interact(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
-        // spectators can't get no sleep
-        if (player.isSpectator()) return ActionResult.PASS;
+        if (isSurvivalPlayer(player)) return ActionResult.PASS;
 
-        // only check when alive and in survival mode
-        boolean isSurvival = !player.isCreative() && player.isAlive();
-
-        if (isSurvival && !world.isClient()) {
+        if (!world.isClient()) {
             BlockPos hitBlockPos = hitResult.getBlockPos();
 
             if (isBedBlock(world, hitBlockPos)) {
