@@ -1,15 +1,18 @@
 package io.thimblebird.letvillagersbe;
 
 import io.thimblebird.letvillagersbe.event.AttackBlockHandler;
+import io.thimblebird.letvillagersbe.event.AttackEntityHandler;
 import io.thimblebird.letvillagersbe.event.UseBlockHandler;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
+import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.enums.BedPart;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.VillagerEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
@@ -74,9 +77,14 @@ public class LetVillagersBe implements ModInitializer {
 		return villager != null;
 	}
 
+	public static boolean isSurvivalPlayer(PlayerEntity player) {
+		return player.isAlive() && !player.isCreative() && !player.isSpectator();
+	}
+
 	@Override
 	public void onInitialize() {
 		AttackBlockCallback.EVENT.register(new AttackBlockHandler());
 		UseBlockCallback.EVENT.register(new UseBlockHandler());
+		AttackEntityCallback.EVENT.register(new AttackEntityHandler());
 	}
 }
