@@ -1,5 +1,6 @@
 package io.thimblebird.letvillagersbe;
 
+import io.thimblebird.letvillagersbe.config.ModConfigs;
 import io.thimblebird.letvillagersbe.event.AttackBlockHandler;
 import io.thimblebird.letvillagersbe.event.AttackEntityHandler;
 import io.thimblebird.letvillagersbe.event.UseBlockHandler;
@@ -46,16 +47,6 @@ public class LetVillagersBe implements ModInitializer {
 		return world.getBlockState(pos).getBlock() instanceof BedBlock;
 	}
 
-	public static BlockPos getBedBlockPos(World world, BlockPos pos) {
-		BlockState state = world.getBlockState(pos);
-
-		if (world.getBlockState(pos).get(BedBlock.PART) != BedPart.HEAD) {
-			return pos.offset(state.get(BedBlock.FACING));
-		}
-
-		return pos;
-	}
-
 	public static VillagerEntity getVillagerOccupyingBed(World world, BlockPos pos) {
 		// borrowed from VillagerEntity.class
 		List<VillagerEntity> villagerEntityList = world.getEntitiesByClass(
@@ -77,12 +68,32 @@ public class LetVillagersBe implements ModInitializer {
 		return villager != null;
 	}
 
+	public static boolean isBedAndOccupiedByVillager(World world, BlockPos pos) {
+		if (isBedBlock(world, pos)) {
+			return isBedOccupiedByVillager(world, pos);
+		}
+
+		return false;
+	}
+
+	public static BlockPos getBedBlockPos(World world, BlockPos pos) {
+		BlockState state = world.getBlockState(pos);
+
+		if (world.getBlockState(pos).get(BedBlock.PART) != BedPart.HEAD) {
+			return pos.offset(state.get(BedBlock.FACING));
+		}
+
+		return pos;
+	}
+
 	public static boolean isSurvivalPlayer(PlayerEntity player) {
 		return player.isAlive() && !player.isCreative() && !player.isSpectator();
 	}
 
 	@Override
 	public void onInitialize() {
+		ModConfigs.registerConfigs();
+
 		AttackBlockCallback.EVENT.register(new AttackBlockHandler());
 		UseBlockCallback.EVENT.register(new UseBlockHandler());
 		AttackEntityCallback.EVENT.register(new AttackEntityHandler());

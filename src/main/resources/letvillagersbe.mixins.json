@@ -4,6 +4,7 @@
   "package": "io.thimblebird.letvillagersbe.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "BedBlockMixin",
     "LivingEntityMixin",
     "VillagerEntityMixin"
   ],

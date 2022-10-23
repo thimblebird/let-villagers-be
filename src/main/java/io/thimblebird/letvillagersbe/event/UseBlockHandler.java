@@ -14,6 +14,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
 import static io.thimblebird.letvillagersbe.LetVillagersBe.*;
+import static io.thimblebird.letvillagersbe.config.ModConfigs.BED_VILLAGER_ALLOW_WAKE_UP;
 
 public class UseBlockHandler implements UseBlockCallback {
     protected Random random;
@@ -64,17 +65,22 @@ public class UseBlockHandler implements UseBlockCallback {
         }
     }
 
+    @SuppressWarnings("DanglingJavadoc")
     @Override
     public ActionResult interact(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
-        if (!isSurvivalPlayer(player)) return ActionResult.PASS;
+        /**
+         * config check
+         * @see io.thimblebird.letvillagersbe.config.ModConfigs
+         */
+        if (BED_VILLAGER_ALLOW_WAKE_UP) return ActionResult.PASS;
 
-        if (!world.isClient()) {
+        if (isSurvivalPlayer(player)) {
             BlockPos hitBlockPos = hitResult.getBlockPos();
 
             if (isBedBlock(world, hitBlockPos)) {
                 hitBlockPos = getBedBlockPos(world, hitBlockPos);
 
-                if (isBedOccupiedByVillager(world, hitBlockPos)) {
+                if (isBedAndOccupiedByVillager(world, hitBlockPos)) {
                     VillagerEntity villager = getVillagerOccupyingBed(world, hitBlockPos);
 
                     respond(villager, player);

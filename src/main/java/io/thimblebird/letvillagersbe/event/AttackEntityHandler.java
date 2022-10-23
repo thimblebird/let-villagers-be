@@ -11,13 +11,19 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import static io.thimblebird.letvillagersbe.LetVillagersBe.isSurvivalPlayer;
+import static io.thimblebird.letvillagersbe.config.ModConfigs.BED_VILLAGER_ALLOW_PLAYER_DAMAGE;
 
 public class AttackEntityHandler implements AttackEntityCallback {
+    @SuppressWarnings("DanglingJavadoc")
     @Override
     public ActionResult interact(PlayerEntity player, World world, Hand hand, Entity entity, @Nullable EntityHitResult hitResult) {
-        if (!isSurvivalPlayer(player)) return ActionResult.PASS;
+        /**
+         * config check
+         * @see io.thimblebird.letvillagersbe.config.ModConfigs
+         */
+        if (BED_VILLAGER_ALLOW_PLAYER_DAMAGE) return ActionResult.PASS;
 
-        if (!world.isClient()) {
+        if (isSurvivalPlayer(player)) {
             if (entity instanceof VillagerEntity && ((VillagerEntity) entity).isSleeping()) {
                 return ActionResult.FAIL;
             }
