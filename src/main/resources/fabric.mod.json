@@ -25,6 +25,9 @@
       "io.thimblebird.letvillagersbe.LetVillagersBeClient"
     ]
   },
+  "mixins": [
+    "letvillagersbe.mixins.json"
+  ],
 
   "depends": {
     "fabricloader": ">=0.14.9",
