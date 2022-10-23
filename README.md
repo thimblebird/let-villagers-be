@@ -1,9 +1,9 @@
-# Fabric Example Mod
+# Let Villagers Be [Fabric]
 
-## Setup
-
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
-
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+## Features
+- players can't right-click villagers out of their beds
+- players can't left-click damage sleeping villagers
+- *(not implemented yet)* players can't hurt villagers with projectiles (like snowballs)
+- villagers can't be moved/pushed while sleeping
+- players can't break the bed a villager is sleeping in
+- *(experimental)* pistons can't destroy beds with a sleeping villager in it
