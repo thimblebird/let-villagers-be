@@ -1,6 +1,6 @@
 package io.thimblebird.letvillagersbe;
 
-import io.thimblebird.letvillagersbe.config.ModConfigs;
+import io.thimblebird.letvillagersbe.config.LetVillagersBeConfig;
 import io.thimblebird.letvillagersbe.event.AttackBlockHandler;
 import io.thimblebird.letvillagersbe.event.AttackEntityHandler;
 import io.thimblebird.letvillagersbe.event.UseBlockHandler;
@@ -21,7 +21,16 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class LetVillagersBe implements ModInitializer {
-	public static final String MOD_ID = "letvillagersbe";
+	public static String MOD_ID = "letvillagersbe";
+	public static final LetVillagersBeConfig CONFIG = LetVillagersBeConfig.createAndLoad();
+
+	@Override
+	public void onInitialize() {
+		// register event handlers
+		AttackBlockCallback.EVENT.register(new AttackBlockHandler());
+		UseBlockCallback.EVENT.register(new UseBlockHandler());
+		AttackEntityCallback.EVENT.register(new AttackEntityHandler());
+	}
 
 	public static final byte STATUS_NONE = 0;
 	public static final byte STATUS_HEART = 12;
@@ -50,9 +59,9 @@ public class LetVillagersBe implements ModInitializer {
 	public static VillagerEntity getVillagerOccupyingBed(World world, BlockPos pos) {
 		// borrowed from VillagerEntity.class
 		List<VillagerEntity> villagerEntityList = world.getEntitiesByClass(
-				net.minecraft.entity.passive.VillagerEntity.class,
-				new Box(pos),
-				LivingEntity::isSleeping
+			net.minecraft.entity.passive.VillagerEntity.class,
+			new Box(pos),
+			LivingEntity::isSleeping
 		);
 
 		if (!villagerEntityList.isEmpty()) {
@@ -88,14 +97,5 @@ public class LetVillagersBe implements ModInitializer {
 
 	public static boolean isSurvivalPlayer(PlayerEntity player) {
 		return player.isAlive() && !player.isCreative() && !player.isSpectator();
-	}
-
-	@Override
-	public void onInitialize() {
-		ModConfigs.registerConfigs();
-
-		AttackBlockCallback.EVENT.register(new AttackBlockHandler());
-		UseBlockCallback.EVENT.register(new UseBlockHandler());
-		AttackEntityCallback.EVENT.register(new AttackEntityHandler());
 	}
 }
