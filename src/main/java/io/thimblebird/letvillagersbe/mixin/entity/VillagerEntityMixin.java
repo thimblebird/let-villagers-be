@@ -1,4 +1,4 @@
-package io.thimblebird.letvillagersbe.mixin;
+package io.thimblebird.letvillagersbe.mixin.entity;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.VillagerEntity;
@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static io.thimblebird.letvillagersbe.config.ModConfigs.BED_VILLAGER_IS_PUSHABLE;
+import static io.thimblebird.letvillagersbe.LetVillagersBe.CONFIG;
 
 @Mixin(VillagerEntity.class)
 public abstract class VillagerEntityMixin extends LivingEntityMixin {
@@ -16,7 +16,7 @@ public abstract class VillagerEntityMixin extends LivingEntityMixin {
 
     @Override
     protected void lvb$isPushable(CallbackInfoReturnable<Boolean> cir) {
-        if (!BED_VILLAGER_IS_PUSHABLE && this.isSleepingInBed()) {
+        if (!CONFIG.villagerPushingAllowed() && this.isSleepingInBed()) {
             cir.setReturnValue(false);
         }
     }

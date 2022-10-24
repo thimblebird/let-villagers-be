@@ -1,4 +1,4 @@
-package io.thimblebird.letvillagersbe.mixin;
+package io.thimblebird.letvillagersbe.mixin.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -25,6 +25,11 @@ public abstract class LivingEntityMixin extends Entity {
      * @see <a href="https://fabricmc.net/wiki/tutorial:mixinheritance?s[]=mixin&s[]=inheritance#a_technique_for_improved_compatibility">[Fabric Wiki] Mixin Inheritance</a>
      * @see VillagerEntityMixin
      */
-    @Inject(method = "isPushable", at = @At("RETURN"), cancellable = true)
+    @SuppressWarnings("all")
+    @Inject(
+            at = @At("RETURN"),
+            method = "isPushable",
+            cancellable = true
+    )
     protected void lvb$isPushable(CallbackInfoReturnable<Boolean> cir) {}
 }
