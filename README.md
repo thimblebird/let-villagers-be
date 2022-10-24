@@ -1,17 +1,21 @@
-# ![mod icon representing a pixelated 8x8 villager head](src/main/resources/assets/letvillagersbe/icon.png) Let Villagers Be [Fabric]
+# ![mod icon representing a pixelated 8x8 villager head](src/main/resources/assets/letvillagersbe/icon_32x32.png) Let Villagers Be [Fabric]
+
+![version 1.0.0](https://img.shields.io/badge/version-1.0.0-lightgreen?style=flat-square)
+[![license: mit](https://img.shields.io/badge/license-mit-lightblue?style=flat-square)](LICENSE)
+![minecraft 1.19.2](https://img.shields.io/badge/minecraft-1.19.2-yellowgreen?style=flat-square)
+[![mod loader: fabric](https://img.shields.io/badge/loader-fabric-lightyellow?style=flat-square)](https://fabricmc.net)
+[![show on curseforge](https://img.shields.io/badge/curseforge-mod-red?style=flat-square&logo=curseforge)](https://www.curseforge.com/minecraft/mc-mods/let-villagers-be)
 
 ## Features
-- every feature is configurable (path: *`/config/letvillagersbe-config.properties`*)
+- **all features are configurable** (path: *`/config/letvillagersbe-config.json5`*)
+  - with [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu) support!
 - players can't right-click villagers out of their beds
 - players can't left-click damage sleeping villagers
-- *(not implemented yet)* players can't hurt villagers with projectiles (like snowballs)
-- villagers can't be moved/pushed while sleeping
 - players can't break the bed a villager is sleeping in
-- *(experimental)* pistons can't destroy beds with a sleeping villager in it
+- villagers can't be moved/pushed while sleeping
+- **... and more!** *(like one or two, tops)*
 
 ## Known Issues
-- needs to be installed on both **client** and **server-side**
-- translations only work when installing the mod both on the client and server
-  - if installed server-side only, translations won't work
-  - will possibly add an option to disable text altogether in the future so the mod can be installed server-side only
-  - maybe look into [Server Translations API](https://github.com/NucleoidMC/Server-Translations) to make translations for server-side only installations work
+- translations only work out-of-the-box when installing the mod both on the client and the server
+  - if installed server-side only, translations won't work *(yet)*
+  - *NOTE: maybe look into [Server Translations API](https://github.com/NucleoidMC/Server-Translations) to make translations for server-side only installations work*
