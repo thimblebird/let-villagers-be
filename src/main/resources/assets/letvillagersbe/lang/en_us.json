@@ -1,12 +1,83 @@
 {
-  "letvillagersbe.break_bed": "You can't break this bed while %1$s is sleeping",
-  "letvillagersbe.entity.wants_to_sleep": "%1$s wants to sleep",
-  "letvillagersbe.entity.needs_their_sleep": "%1$s needs their sleep",
-  "letvillagersbe.entity.let_sleep": "Let %1$s sleep",
-  "letvillagersbe.entity.wont_get_up": "%1$s won't get up",
-  "letvillagersbe.entity.ignores_you": "%1$s ignores you",
-  "letvillagersbe.entity.had_a_long_day": "%1$s had a long day",
-  "letvillagersbe.entity.is_dreaming_about_sleeping": "%1$s is dreaming about sleeping",
-  "letvillagersbe.entity.is_dreaming_about_you_letting_them_sleep": "%1$s is dreaming about you letting them sleep",
-  "letvillagersbe.entity.is_having_a_nap": "%1$s is having a nap"
+  "text.letvillagersbe.break_bed": [
+    "You can't break this bed while ",
+    { "index": 0, "color": "#BECC41" },
+    " is sleeping"
+  ],
+  "text.letvillagersbe.wake_reaction.wants_to_sleep": [
+    "",
+    { "index": 0, "color": "#BECC41" },
+    " wants to sleep"
+  ],
+  "text.letvillagersbe.wake_reaction.needs_their_sleep": [
+    "",
+    { "index": 0, "color": "#BECC41" },
+    " needs their sleep"
+  ],
+  "text.letvillagersbe.wake_reaction.let_sleep": [
+    "Let ",
+    { "index": 0, "color": "#BECC41" },
+    " sleep"
+  ],
+  "text.letvillagersbe.wake_reaction.wont_get_up": [
+    "",
+    { "index": 0, "color": "#BECC41" },
+    " won't get up"
+  ],
+  "text.letvillagersbe.wake_reaction.ignores_you": [
+    "",
+    { "index": 0, "color": "#BECC41" },
+    " ignores you"
+  ],
+  "text.letvillagersbe.wake_reaction.had_a_long_day": [
+    "",
+    { "index": 0, "color": "#BECC41" },
+    " had a long day"
+  ],
+  "text.letvillagersbe.wake_reaction.is_dreaming_about_sleeping": [
+    "",
+    { "index": 0, "color": "#BECC41" },
+    " is dreaming about sleeping"
+  ],
+  "text.letvillagersbe.wake_reaction.is_dreaming_about_you_letting_them_sleep": [
+    "",
+    { "index": 0, "color": "#BECC41" },
+    " is dreaming about you letting them sleep"
+  ],
+  "text.letvillagersbe.wake_reaction.is_having_a_nap": [
+    "",
+    { "index": 0, "color": "#BECC41" },
+    " is having a nap"
+  ],
+
+  "text.config.letvillagersbe-config.title": [
+    "",
+    { "text": "Let Villagers Be", "color": "#BECC41" },
+    " Configuration"
+  ],
+
+  "text.config.letvillagersbe-config.section.sectionPlayersConfiguration": "Players",
+  "text.config.letvillagersbe-config.option.playerDamageVillagerAllowed": "Allow left-clicking sleeping villagers to damage them",
+
+  "text.config.letvillagersbe-config.section.sectionVillagersConfiguration": "Villagers",
+  "text.config.letvillagersbe-config.option.villagerWakeUpAllowed": "Allow right-clicking sleeping villagers to wake them up",
+  "text.config.letvillagersbe-config.option.villagerPushingAllowed": "Allow pushing sleeping villagers",
+  "text.config.letvillagersbe-config.option.villagerResponseChance": "Chance of villagers to respond trying to wake them up",
+  "text.config.letvillagersbe-config.option.villagerResponseParticlesChance": "Chance of villagers to spawn response-particles",
+
+  "text.config.letvillagersbe-config.section.sectionBedsConfiguration": "Beds",
+  "text.config.letvillagersbe-config.option.bedBreakingAllowed": "Allow breaking beds with villagers in them",
+
+  "text.config.letvillagersbe-config.section.sectionMessagesConfiguration": "Messages",
+  "text.config.letvillagersbe-config.category.showMessageWhen": "Show message when trying to ...",
+  "text.config.letvillagersbe-config.option.showMessageWhen.wakeUpVillager": "wake up villagers",
+  "text.config.letvillagersbe-config.option.showMessageWhen.breakingBad": "break beds with villagers in them",
+  "text.config.letvillagersbe-config.option.showMessageWhen.breakingBadUsingPistons": "break beds with villagers in them using pistons",
+
+  "text.config.letvillagersbe-config.section.sectionExperimentalConfiguration": { "text": "[Experimental]", "color": "#7F77C7" },
+  "text.config.letvillagersbe-config.option.bedBreakingUsingPistonsAllowed": "Allow breaking beds with villagers in them using pistons",
+
+  "text.config.letvillagersbe-config.section.sectionNotImplementedConfiguration": { "text": "[Not Implemented]", "color": "#EA777A" },
+  "text.config.letvillagersbe-config.option.playerProjectileDamageAllowed": "Allow projectiles to hit sleeping villagers",
+  "text.config.letvillagersbe-config.option.highlightVillagerName": "Highlight villager names in messages"
 }
