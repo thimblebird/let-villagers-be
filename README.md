@@ -7,6 +7,7 @@
 [![license: mit](https://img.shields.io/badge/license-mit-lightblue?style=flat-square)](LICENSE)
 
 ## Features
+- supported environments: **[ *client+server* || *server-only* ]**
 - **all features are configurable** (path: *`/config/letvillagersbe-config.json5`*)
   - with [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu) support!
 - players can't right-click villagers out of their beds
@@ -17,5 +18,6 @@
 
 ## Known Issues
 - translations only work out-of-the-box when installing the mod both on the client and the server
-  - if installed server-side only, translations won't work *(yet)*
+  - if installed server-side only, translations won't work *(yet)* but vanilla clients can still connect and use the mod!
+    - you can disable all messages in the `showMessageWhen` section of the server config, see [#3 (comment)](https://github.com/thimblebird/let-villagers-be/issues/3#issuecomment-1289626596)
   - *NOTE: maybe look into [Server Translations API](https://github.com/NucleoidMC/Server-Translations) to make translations for server-side only installations work*
