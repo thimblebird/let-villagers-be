@@ -38,18 +38,19 @@ public class LetVillagersBe implements ModInitializer {
 	public static final byte STATUS_HAPPY = 14;
 	public static final byte STATUS_SPLASH = 42;
 
-	public static final String MESSAGE_BREAK_BED = MOD_ID + ".break_bed";
+	public static final String LANG_KEY = "text." + MOD_ID;
+	public static final String MESSAGE_BREAK_BED = LANG_KEY + ".break_bed";
 	public static final Object[][] WAKE_REACTIONS = {
-			// translation key, try "say no", "say no" chance, entity status, status chance
-			{ MOD_ID + ".entity.wants_to_sleep", true, 1.0D, STATUS_ANGRY, 0.7D },
-			{ MOD_ID + ".entity.needs_their_sleep", true, 0.5D, STATUS_SPLASH, 0.85D },
-			{ MOD_ID + ".entity.let_sleep", false, 0.0D, STATUS_NONE, 0.0D },
-			{ MOD_ID + ".entity.wont_get_up", true, 0.5D, STATUS_ANGRY, 0.5D },
-			{ MOD_ID + ".entity.ignores_you", false, 0.0D, STATUS_NONE, 0.0D },
-			{ MOD_ID + ".entity.had_a_long_day", true, 0.5D, STATUS_SPLASH, 1.0D },
-			{ MOD_ID + ".entity.is_dreaming_about_sleeping", false, 0.0D, STATUS_HAPPY, 0.5D },
-			{ MOD_ID + ".entity.is_dreaming_about_you_letting_them_sleep", false, 0.0D, STATUS_HEART, 0.5D },
-			{ MOD_ID + ".entity.is_having_a_nap", false, 0.0D, STATUS_NONE, 0.0D },
+		// [translation key], [try "say no"], ["say no" chance], [entity status]
+		{ LANG_KEY + ".wake_reaction.wants_to_sleep", true, 1.0D, STATUS_ANGRY },
+		{ LANG_KEY + ".wake_reaction.needs_their_sleep", true, 0.5D, STATUS_SPLASH },
+		{ LANG_KEY + ".wake_reaction.let_sleep", false, 0.0D, STATUS_NONE },
+		{ LANG_KEY + ".wake_reaction.wont_get_up", true, 0.5D, STATUS_ANGRY },
+		{ LANG_KEY + ".wake_reaction.ignores_you", false, 0.0D, STATUS_NONE },
+		{ LANG_KEY + ".wake_reaction.had_a_long_day", true, 0.5D, STATUS_SPLASH },
+		{ LANG_KEY + ".wake_reaction.is_dreaming_about_sleeping", false, 0.0D, STATUS_HAPPY },
+		{ LANG_KEY + ".wake_reaction.is_dreaming_about_you_letting_them_sleep", false, 0.0D, STATUS_HEART },
+		{ LANG_KEY + ".wake_reaction.is_having_a_nap", false, 0.0D, STATUS_NONE },
 	};
 
 	public static boolean isBedBlock(World world, BlockPos pos) {

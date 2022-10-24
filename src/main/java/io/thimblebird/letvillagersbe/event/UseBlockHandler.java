@@ -14,7 +14,6 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
 import static io.thimblebird.letvillagersbe.LetVillagersBe.*;
-import static io.thimblebird.letvillagersbe.config.ModConfigs.BED_VILLAGER_ALLOW_WAKE_UP;
 
 public class UseBlockHandler implements UseBlockCallback {
     protected Random random;
@@ -28,9 +27,9 @@ public class UseBlockHandler implements UseBlockCallback {
     }
 
     // spawns a random sprite above the villager's head
-    private void randomSendStatus(VillagerEntity villager, byte status, double statusChance) {
+    private void randomSendStatus(VillagerEntity villager, byte status) {
         if (status != STATUS_NONE) {
-            if (this.random.nextDouble() <= statusChance) {
+            if (this.random.nextDouble() <= CONFIG.villagerResponseParticlesChance()) {
                 villager.getEntityWorld().sendEntityStatus(villager, status);
             }
         }
@@ -43,15 +42,20 @@ public class UseBlockHandler implements UseBlockCallback {
     private void sendResponse(VillagerEntity villager, PlayerEntity player) {
         // get a random response
         this.wakeReaction = Util.getRandom(WAKE_REACTIONS, this.random);
-        boolean trySayNo = (boolean) this.wakeReaction[1];
 
         if (!villager.world.isClient() && villager.isAlive()) {
-            if (trySayNo) {
+            // try say no
+            if ((boolean) this.wakeReaction[1]) {
                 this.randomShakeHead(villager, (double) this.wakeReaction[2]);
             }
 
-            this.randomSendStatus(villager, (byte) this.wakeReaction[3], (double) this.wakeReaction[4]);
-            player.sendMessage(this.getOccupiedMessage(villager), true);
+            if (CONFIG.villagerResponseParticlesChance() > 0.0d) {
+                this.randomSendStatus(villager, (byte) this.wakeReaction[3]);
+            }
+
+            if (CONFIG.showMessageWhen.wakeUpVillager()) {
+                player.sendMessage(this.getOccupiedMessage(villager), true);
+            }
         }
     }
 
@@ -60,19 +64,14 @@ public class UseBlockHandler implements UseBlockCallback {
 
         // @TODO: doing this until i figure out how to add a proper cooldown
         // random chance to respond
-        if (this.random.nextDouble() <= 0.33D) {
+        if (this.random.nextDouble() <= CONFIG.villagerResponseChance()) {
             this.sendResponse(villager, player);
         }
     }
 
-    @SuppressWarnings("DanglingJavadoc")
     @Override
     public ActionResult interact(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
-        /**
-         * config check
-         * @see io.thimblebird.letvillagersbe.config.ModConfigs
-         */
-        if (BED_VILLAGER_ALLOW_WAKE_UP) return ActionResult.PASS;
+        if (CONFIG.villagerWakeUpAllowed()) return ActionResult.PASS;
 
         if (isSurvivalPlayer(player)) {
             BlockPos hitBlockPos = hitResult.getBlockPos();
@@ -83,7 +82,9 @@ public class UseBlockHandler implements UseBlockCallback {
                 if (isBedAndOccupiedByVillager(world, hitBlockPos)) {
                     VillagerEntity villager = getVillagerOccupyingBed(world, hitBlockPos);
 
-                    respond(villager, player);
+                    if (CONFIG.villagerResponseChance() > 0) {
+                        respond(villager, player);
+                    }
 
                     return ActionResult.SUCCESS;
                 }
