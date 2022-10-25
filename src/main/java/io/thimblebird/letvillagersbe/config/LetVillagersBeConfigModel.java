@@ -5,7 +5,7 @@ import io.wispforest.owo.config.annotation.*;
 
 @SuppressWarnings("unused")
 @Modmenu(modId = "letvillagersbe")
-@Config(name = "letvillagersbe-config", wrapperName = "LetVillagersBeConfig")
+@Config(name = "letvillagersbe", wrapperName = "LetVillagersBeConfig")
 public class LetVillagersBeConfigModel {
     @SectionHeader("sectionPlayersConfiguration")
         public boolean playerDamageVillagerAllowed = false;

@@ -8,17 +8,6 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
-import net.minecraft.block.BedBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.enums.BedPart;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.VillagerEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.world.World;
-
-import java.util.List;
 
 public class LetVillagersBe implements ModInitializer {
 	public static String MOD_ID = "letvillagersbe";
@@ -52,51 +41,4 @@ public class LetVillagersBe implements ModInitializer {
 		{ LANG_KEY + ".wake_reaction.is_dreaming_about_you_letting_them_sleep", false, 0.0D, STATUS_HEART },
 		{ LANG_KEY + ".wake_reaction.is_having_a_nap", false, 0.0D, STATUS_NONE },
 	};
-
-	public static boolean isBedBlock(World world, BlockPos pos) {
-		return world.getBlockState(pos).getBlock() instanceof BedBlock;
-	}
-
-	public static VillagerEntity getVillagerOccupyingBed(World world, BlockPos pos) {
-		// borrowed from VillagerEntity.class
-		List<VillagerEntity> villagerEntityList = world.getEntitiesByClass(
-			net.minecraft.entity.passive.VillagerEntity.class,
-			new Box(pos),
-			LivingEntity::isSleeping
-		);
-
-		if (!villagerEntityList.isEmpty()) {
-			return villagerEntityList.get(0);
-		}
-
-		return null;
-	}
-
-	public static boolean isBedOccupiedByVillager(World world, BlockPos pos) {
-		VillagerEntity villager = getVillagerOccupyingBed(world, pos);
-
-		return villager != null;
-	}
-
-	public static boolean isBedAndOccupiedByVillager(World world, BlockPos pos) {
-		if (isBedBlock(world, pos)) {
-			return isBedOccupiedByVillager(world, pos);
-		}
-
-		return false;
-	}
-
-	public static BlockPos getBedBlockPos(World world, BlockPos pos) {
-		BlockState state = world.getBlockState(pos);
-
-		if (world.getBlockState(pos).get(BedBlock.PART) != BedPart.HEAD) {
-			return pos.offset(state.get(BedBlock.FACING));
-		}
-
-		return pos;
-	}
-
-	public static boolean isSurvivalPlayer(PlayerEntity player) {
-		return player.isAlive() && !player.isCreative() && !player.isSpectator();
-	}
 }

@@ -10,6 +10,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import static io.thimblebird.letvillagersbe.LetVillagersBe.CONFIG;
+
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
     // modified to `public` by access widener for usage in `VillagerEntityMixin`
@@ -31,5 +33,9 @@ public abstract class LivingEntityMixin extends Entity {
             method = "isPushable",
             cancellable = true
     )
-    protected void lvb$isPushable(CallbackInfoReturnable<Boolean> cir) {}
+    protected void lvb$isPushable(CallbackInfoReturnable<Boolean> cir) {
+        if (!CONFIG.villagerPushingAllowed() && this.isSleepingInBed()) {
+            cir.setReturnValue(false);
+        }
+    }
 }
