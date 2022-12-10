@@ -1,3 +1,6 @@
+10.12.2022 // **1.0.1-1.19.3**
+- update to 1.19.3
+
 24.10.2022 // **1.0.0-1.19.2**
 - first release on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/let-villagers-be)
 - adds the [owo-lib](https://docs.wispforest.io/owo/features/) (mainly for config stuff)
